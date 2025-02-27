@@ -10,7 +10,6 @@ const orderSchema = new mongoose.Schema({
   ],
   totalPrice: { type: Number, required: true },
   isPaid: { type: Boolean, default: false },
-  paidAt: { type: Date }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Order", orderSchema);

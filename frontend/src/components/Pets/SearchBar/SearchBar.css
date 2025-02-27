@@ -1,0 +1,12 @@
+.search-bar {
+    padding: 20px;
+    width: 400px;
+    border-radius: 5px;
+    border-color: white;
+}
+
+@media (max-width: 768px) {
+    .search-bar {
+      width: 200px;
+    }
+  }

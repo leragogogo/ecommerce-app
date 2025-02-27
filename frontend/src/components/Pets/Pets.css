@@ -1,0 +1,57 @@
+@import "../../vars.css";
+
+.pet-list-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-container {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10%;
+}
+
+.pet-grid {
+  display: grid;
+  gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  margin: 0 10%;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.add-pet-button {
+  padding: 10px 20px;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-pet-button:hover {
+  background-color: var(--color-accent-dark);
+}
+
+@media (max-width: 768px) {
+  .controls-container {
+    flex-direction: column;
+  }
+
+  .add-pet-button {
+    width: 245px;
+  }
+
+  .pet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pet-list-page {
+    min-height: calc(100vh - env(safe-area-inset-bottom));
+  }
+}

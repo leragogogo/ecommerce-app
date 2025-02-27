@@ -1,0 +1,48 @@
+.pet-card {
+    background-color: rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical centering */
+    align-items: center; /* Horizontal centering */
+    text-align: center; 
+}
+.image-container {
+    flex: 0 0 240px; /* Don't grow/shrink, fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 120px; /* Minimum height for text area */
+    padding: 0 20px;
+}
+
+.pet-image {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    align-self: center;
+}
+
+.name {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 30px;
+    font-family: var(--font-roboto);
+    color: var(--color-text);
+}
+
+.price {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    font-family: var(--font-roboto);
+    color: var(--color-text);
+}
