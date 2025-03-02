@@ -24,7 +24,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/pets" element={<Pets />} />
                 <Route path="/pets/:id" element={<PetDetail />} />
-                <Route path="/pets/petForm" element={PetForm} />
+                <Route path="/pets/petForm" element={<PetForm />} />
               </Routes>
             </main>
           </div>

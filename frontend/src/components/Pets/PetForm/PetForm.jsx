@@ -1,16 +1,21 @@
 
 import React, { useState } from 'react';
-import { usePets } from '../../../providers/PetsProvider';
 import { useNavigate } from 'react-router-dom';
+import './PetForm.css';
+import { usePets } from '../../../providers/PetsProvider';
 
 const PetForm = () => {
+    const { categories } = usePets();
     const { addPet } = usePets();
     const [formData, setFormData] = useState({
         name: '',
-        breed: '',
-        age: '',
+        category: null,
+        stock: 1,
+        price: 1000,
         description: ''
     });
+
+
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,6 +25,24 @@ const PetForm = () => {
         } catch (err) {
             // Handle error
         }
+    };
+
+    const handlePriceChange = (e) => {
+        setFormData({ ...formData, price: e.target.value })
+    };
+
+    const incrementPrice = () => {
+        setFormData(prev => ({
+            ...prev,
+            price: Number(prev.price) + 100
+        }));
+    };
+
+    const decrementPrice = () => {
+        setFormData(prev => ({
+            ...prev,
+            price: Math.max(100, prev.price - 100)
+        }));
     };
 
     return (
@@ -33,31 +56,54 @@ const PetForm = () => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required
+
                     />
                 </label>
 
-                <label>
-                    Breed:
-                    <input
-                        type="text"
-                        value={formData.breed}
-                        onChange={(e) => setFormData({ ...formData, breed: e.target.value })}
-                        required
-                    />
-                </label>
+                <select
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    required
+                    className="form-select"
+                >
+                    <option value="">Select a category</option>
+                    {categories.map(category => (
+                        <option key={category.id} value={category.name}>
+                            {category.name}
+                        </option>
+                    ))}
+                </select>
 
                 <label>
-                    Age:
+                    Stock:
                     <input
                         type="number"
-                        value={formData.age}
-                        onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                        value={formData.stock}
+                        onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
                         required
+                        min="1"
                     />
+
                 </label>
 
                 <label>
-                    Description (for image generation):
+                    Price:
+                    <div className="input-price">
+                        <button type="button" onClick={decrementPrice}>-100</button>
+                        <input
+                            type="number"
+                            value={formData.price}
+                            onChange={handlePriceChange}
+                            step="100"
+                            min="100"
+                            className="hundred-step-input"
+                        />
+                        <button type="button" onClick={incrementPrice}>+100</button>
+                    </div>
+                </label>
+
+                <label>
+                    Description :
                     <textarea
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}

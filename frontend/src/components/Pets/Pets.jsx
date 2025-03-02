@@ -11,11 +11,12 @@ const Pets = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const debounceTimer = setTimeout(() => {
+            console.log('useEffect')
             loadPets(searchQuery);
         }, 300);
 
         return () => clearTimeout(debounceTimer);
-    }, [searchQuery, loadPets]);
+    }, [searchQuery]);
 
     if (error) return <div>Error: {error}</div>;
     if (loading) return <div>Loading...</div>;

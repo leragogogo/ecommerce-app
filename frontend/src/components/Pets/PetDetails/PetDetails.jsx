@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './PetDetails.css';
-import unicorn from '../../../assets/pets/unicorn.png'
 import { useCart } from '../../../providers/CartProvider';
-import {usePets} from '../../../providers/PetsProvider';
+import { usePets } from '../../../providers/PetsProvider';
 
 const PetDetail = () => {
     const { id } = useParams();
@@ -12,7 +11,9 @@ const PetDetail = () => {
     const [pet, setPet] = useState(null);
     //const navigate = useNavigate();
     const { getPetById } = usePets();
-
+    const loadImage = (imagePath) => {
+        return require(`../../../assets/pets/${imagePath}`);
+    };
     useEffect(() => {
         const loadPet = async () => {
             try {
@@ -34,12 +35,14 @@ const PetDetail = () => {
 
     return (
         <div className="pet-detail">
-            <img src={unicorn} alt={pet.name} className='details-image' />
+            <img src={loadImage(pet.imagePath)} alt={pet.name} className='details-image' />
             <div className='desc-container'>
                 <h1 className='pet-name'>{pet.name}</h1>
                 <p className='pet-details-text'>{pet.description}</p>
                 <p className='pet-price'>{pet.price} Euro</p>
-                <p className={pet.stock === 0 ? 'out-of-stock' : 'in-stock'}>{pet.stock == 0 ? 'Not in stock!' : 'In stock!'}</p>
+                <p className={pet.stock === 0 ? 'out-of-stock' : 'in-stock'}>
+                    {pet.stock == 0 ? 'Not in stock!' : 'In stock!'}
+                </p>
                 {pet.stock > 0 && (
                     <>
                         <div className="quantity-controls">
@@ -66,7 +69,6 @@ const PetDetail = () => {
                     </>
                 )}
             </div>
-            {/* Add more details */}
         </div>
     );
 };
