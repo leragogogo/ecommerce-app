@@ -1,4 +1,3 @@
-// src/context/PetContext.jsx
 import { createContext, useContext, useState, useEffect } from 'react';
 import { fetchPets, fetchPetDetails, createPet as apiCreatePet, mockPets } from '../api/pets';
 import { Pet } from '../models/Pet';
@@ -52,16 +51,41 @@ export const PetProvider = ({ children }) => {
                 pets[pets.length - 1].id + 1,
                 newPet.name, newPet.description,
                 newPet.price, categories[categoryIndex], newPet.stock, image);
-            /*const createdPet = */await apiCreatePet(newPet);
+            await apiCreatePet(newPet);
             var arr = pets;
             arr.push(pet);
             mockPets.push(pet);
             setPets(arr);
-            //return createdPet;
         } catch (err) {
             throw err;
         }
     };
+
+    const decreaseStock = (petId, quantity) => {
+        var newPets = [];
+        for (var i = 0; i < pets.length; i++) {
+            newPets.push(pets[i]);
+        }
+        for (var i = 0; i < newPets.length; i++) {
+            if (newPets[i].id == petId) {
+                newPets[i].stock -= quantity;
+            }
+        }
+        setPets(newPets);
+    }
+
+    const increaseStock = (petId, quantity) => {
+        var newPets = [];
+        for (var i = 0; i < pets.length; i++) {
+            newPets.push(pets[i]);
+        }
+        for (var i = 0; i < newPets.length; i++) {
+            if (newPets[i].id == petId) {
+                newPets[i].stock += quantity;
+            }
+        }
+        setPets(newPets);
+    }
 
     const getPetById = async (id) => {
         try {
@@ -85,12 +109,8 @@ export const PetProvider = ({ children }) => {
                 loadPets,
                 addPet,
                 getPetById,
-                updatePet: async (id, updates) => {
-                    /* Implement update logic */
-                },
-                deletePet: async (id) => {
-                    /* Implement delete logic */
-                }
+                decreaseStock,
+                increaseStock,
             }}
         >
             {children}

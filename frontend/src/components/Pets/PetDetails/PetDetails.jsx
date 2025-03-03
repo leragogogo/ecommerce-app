@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import './PetDetails.css';
 import { useCart } from '../../../providers/CartProvider';
 import { usePets } from '../../../providers/PetsProvider';
-
+import AddToCartModal from '../../Cart/AddToCartModal/AddToCartModal';
 const PetDetail = () => {
     const { id } = useParams();
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
     const [pet, setPet] = useState(null);
-    //const navigate = useNavigate();
-    const { getPetById } = usePets();
+    const { decreaseStock, getPetById } = usePets();
+    const [showModal, setShowModal] = useState(false);
     const loadImage = (imagePath) => {
         return require(`../../../assets/pets/${imagePath}`);
     };
@@ -27,8 +27,9 @@ const PetDetail = () => {
     }, [id, getPetById]);
 
     const handleAddToCart = () => {
-        addToCart({ ...pet, quantity });
-        //navigate('/cart'); // Or show confirmation
+        addToCart(pet, quantity);
+        decreaseStock(pet.id, quantity);
+        setShowModal(true);
     };
 
     if (!pet) return <div>Loading...</div>;
@@ -66,6 +67,9 @@ const PetDetail = () => {
                         >
                             Add to Cart ({quantity})
                         </button>
+                        {showModal && (
+                            <AddToCartModal onClose={() => setShowModal(false)} />
+                        )}
                     </>
                 )}
             </div>

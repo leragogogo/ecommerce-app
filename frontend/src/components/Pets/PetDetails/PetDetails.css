@@ -34,7 +34,7 @@
 }
 
 .add-to-cart {
-    background-color: var(--color-accent);
+    background-color: var(--color-button);
     color: white;
     padding: 15px 30px;
     border: none;
@@ -46,7 +46,7 @@
   }
   
   .add-to-cart:hover {
-    background-color: var(--color-accent-dark);
+    background-color: var(--color-dark);
   }
   
 

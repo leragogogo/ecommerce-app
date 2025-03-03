@@ -1,0 +1,154 @@
+@import "../../../vars.css";
+
+.cart-card {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-image-container {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.controls-group {
+    display: flex;
+    align-items: center;
+    order: 1;
+    background-color: white;
+    padding: 10px;
+    border-radius: 40px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row;
+    margin-right: 20px;
+}
+.quantity-controls button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background: none;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
+
+.cart-card h3 {
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 30px;
+}
+
+.cart-image {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    align-self: center;
+    margin-right: 30px;
+}
+
+.cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.cart-quantity-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background: none;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.bin {
+    width: 30px;
+    height: 30px;
+}
+
+.quantity-controls span {
+    font-size: 1.2rem;
+    min-width: 50px;
+    text-align: center;
+    color: black
+}
+
+.item-name {
+    order: 1;
+    width:50px
+}
+
+.controls-group {
+    order: 2;
+}
+
+.item-price {
+    order: 3;
+}
+
+
+
+@media (max-width: 768px) {
+    .mobile-row {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .item-name {
+        flex: 1 1 100%;
+        order: 1;
+    }
+
+    .controls-group {
+        order: 3;
+        flex: 1;
+        flex-direction: column;
+
+    }
+
+    .quantity-controls {
+        margin-right: 0;
+    }
+
+    .item-price {
+        order: 2;
+        flex: 0 0 auto;
+    }
+}

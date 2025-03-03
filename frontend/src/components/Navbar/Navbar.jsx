@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import profile from "../../assets/nav/user.png";
 import cart from "../../assets/nav/online-shopping.png"
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
+
+    const navigate = useNavigate();
     return <nav className="navbar">
         <Link className="title" to="/" >
             MAGIC PETS
@@ -18,7 +21,7 @@ export const Navbar = () => {
                     />
                 </li>
                 <li>
-                    <img className="image" src={cart} onClick={() => { }}
+                    <img className="image" src={cart} onClick={() => { navigate('/cart') }}
                     />
                 </li>
             </ul>

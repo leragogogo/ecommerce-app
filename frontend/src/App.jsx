@@ -7,6 +7,7 @@ import PetDetail from './components/Pets/PetDetails/PetDetails';
 import { CartProvider } from './providers/CartProvider';
 import { PetProvider } from './providers/PetsProvider';
 import PetForm from './components/Pets/PetForm/PetForm';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/pets" element={<Pets />} />
                 <Route path="/pets/:id" element={<PetDetail />} />
                 <Route path="/pets/petForm" element={<PetForm />} />
+                <Route path="/cart" element={<Cart />} />
               </Routes>
             </main>
           </div>
