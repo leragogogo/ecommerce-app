@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 
-//const productRoutes = require("./routes/productRoutes");
+const petRoutes = require("./routes/petRoutes");
 //const orderRoutes = require("./routes/orderRoutes");
 const userRoutes = require("./routes/userRoutes");
 
@@ -14,9 +14,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-//app.use("/api/products", productRoutes);
+app.use("/api/pets", petRoutes);
 //app.use("/api/orders", orderRoutes);
 app.use("/api/users", userRoutes);
+
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

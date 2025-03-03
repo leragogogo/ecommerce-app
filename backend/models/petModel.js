@@ -6,6 +6,8 @@ const petSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   category: { type: String, required: true },
   stock: { type: Number, required: true },
+  image: { type: String, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Product", petSchema);
+const Pet = mongoose.model("Pet", petSchema);
+module.exports = Pet;
