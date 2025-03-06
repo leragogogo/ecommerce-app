@@ -8,31 +8,40 @@ import { CartProvider } from './providers/CartProvider';
 import { PetProvider } from './providers/PetsProvider';
 import PetForm from './components/Pets/PetForm/PetForm';
 import Cart from './components/Cart/Cart';
+import { AuthProvider } from './providers/AuthProvider';
+import Profile from './components/Profile/Profile';
+import Login from './components/Auth/Login/Login';
+import Register from './components/Auth/Register/Register';
 
 function App() {
   return (
-    <PetProvider>
-      <CartProvider>
-        <Router>
-          <div className="App">
-            <header>
-              <nav>
-                <Navbar />
-              </nav>
-            </header>
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pets" element={<Pets />} />
-                <Route path="/pets/:id" element={<PetDetail />} />
-                <Route path="/pets/petForm" element={<PetForm />} />
-                <Route path="/cart" element={<Cart />} />
-              </Routes>
-            </main>
-          </div>
-        </Router>
-      </CartProvider>
-    </PetProvider>
+    <AuthProvider>
+      <PetProvider>
+        <CartProvider>
+          <Router>
+            <div className="App">
+              <header>
+                <nav>
+                  <Navbar />
+                </nav>
+              </header>
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/pets" element={<Pets />} />
+                  <Route path="/pets/:id" element={<PetDetail />} />
+                  <Route path="/pets/petForm" element={<PetForm />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register/>} />
+                </Routes>
+              </main>
+            </div>
+          </Router>
+        </CartProvider>
+      </PetProvider>
+    </AuthProvider>
   );
 }
 

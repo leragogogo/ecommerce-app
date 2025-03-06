@@ -17,7 +17,7 @@ export const Navbar = () => {
                 className="menuItems"
             >
                 <li>
-                    <img className="image" src={profile} onClick={() => { }}
+                    <img className="image" src={profile} onClick={() => { navigate('/profile') }}
                     />
                 </li>
                 <li>
