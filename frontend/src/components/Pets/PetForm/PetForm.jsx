@@ -23,7 +23,7 @@ const PetForm = () => {
             await addPet(formData);
             navigate('/pets');
         } catch (err) {
-            // Handle error
+            alert(err);
         }
     };
 

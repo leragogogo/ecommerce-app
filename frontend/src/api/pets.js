@@ -2,7 +2,7 @@ import { Category } from '../models/Category';
 import { Pet } from '../models/Pet';
 
 // Mock data for development
-const mockCategories = [
+/*const mockCategories = [
     new Category(1, 'Air'),
     new Category(2, 'Earth'),
     new Category(3, 'Water'),
@@ -19,23 +19,49 @@ export const mockPets = [
     new Pet(8, 'Fairy', 'A perfect companion for a life. Its magic helps with hardships and makes good moments even better.', 27000, 1, 8, 'fairy.jpg'),
 
 ];
+*/
+export const createPet = async (newPet) => {
+    await fetch("http://localhost:5001/api/pets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            "name": newPet.name,
+            "description": newPet.description,
+            "price": newPet.price,
+            "category": newPet.category.name,
+            "stock": newPet.stock,
+            "image": newPet.imagePath,
+        }),
 
-export const createPet = async () => {
-
+    });
 }
 
 export const fetchCategories = async () => {
-    return mockCategories;
+    return [];//mockCategories;
 }
 
 export const fetchPets = async (searchQuery) => {
-    // Replace with actual API call later
-    return mockPets.filter(pet =>
+    const response = await fetch("http://localhost:5001/api/pets", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    /*const data = */ return await response.json();
+    /*return data.filter(pet =>
         pet.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    );*/
 };
+
+export const updateStock = async (petId, quantity) => {
+    await fetch(`http://localhost:5001/api/pets/${petId}/stock`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            "quantity": quantity
+        }),
+    });
+}
 
 export const fetchPetDetails = async (id) => {
     // Replace with actual API call later
-    return mockPets.find(pet => pet.id === Number(id));
+    return [];//mockPets.find(pet => pet.id === Number(id));
 };

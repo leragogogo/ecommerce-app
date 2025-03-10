@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { fetchPets, fetchPetDetails, createPet as apiCreatePet, mockPets } from '../api/pets';
+import { fetchPets, fetchPetDetails, createPet as apiCreatePet, updateStock as apiUpdateStock } from '../api/pets';
 import { Pet } from '../models/Pet';
 import { Category } from '../models/Category';
 const PetContext = createContext();
@@ -12,6 +12,7 @@ export const PetProvider = ({ children }) => {
         ]
     );
     const [pets, setPets] = useState([]);
+    const [filteredPets, setFilteredPets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -19,7 +20,23 @@ export const PetProvider = ({ children }) => {
         try {
             setLoading(true);
             const data = await fetchPets(searchQuery);
-            setPets(data);
+
+            setPets(
+                data.map(
+                    (pet) => new Pet(
+                        pet._id, pet.name, pet.description,
+                        pet.price, pet.category, pet.stock, pet.image
+                    )
+                )
+            );
+            setFilteredPets(
+                data.map(
+                    (pet) => new Pet(
+                        pet._id, pet.name, pet.description,
+                        pet.price, pet.category, pet.stock, pet.image
+                    )
+                )
+            );
         } catch (err) {
             setError(err.message);
         } finally {
@@ -27,6 +44,12 @@ export const PetProvider = ({ children }) => {
         }
     };
 
+    const filterPets = (searchQuery) => {
+        setFilteredPets(pets.filter(pet =>
+            pet.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        );
+    }
     const addPet = async (newPet) => {
         try {
             var categoryIndex = 0;
@@ -51,17 +74,16 @@ export const PetProvider = ({ children }) => {
                 pets[pets.length - 1].id + 1,
                 newPet.name, newPet.description,
                 newPet.price, categories[categoryIndex], newPet.stock, image);
-            await apiCreatePet(newPet);
+            await apiCreatePet(pet);
             var arr = pets;
             arr.push(pet);
-            mockPets.push(pet);
             setPets(arr);
         } catch (err) {
             throw err;
         }
     };
 
-    const decreaseStock = (petId, quantity) => {
+    /*const decreaseStock = (petId, quantity) => {
         var newPets = [];
         for (var i = 0; i < pets.length; i++) {
             newPets.push(pets[i]);
@@ -72,9 +94,10 @@ export const PetProvider = ({ children }) => {
             }
         }
         setPets(newPets);
-    }
+    }*/
 
-    const increaseStock = (petId, quantity) => {
+    const updateStock = async (petId, quantity) => {
+        await apiUpdateStock(petId, quantity);
         var newPets = [];
         for (var i = 0; i < pets.length; i++) {
             newPets.push(pets[i]);
@@ -106,11 +129,12 @@ export const PetProvider = ({ children }) => {
                 loading,
                 error,
                 categories,
+                filteredPets,
                 loadPets,
                 addPet,
                 getPetById,
-                decreaseStock,
-                increaseStock,
+                updateStock,
+                filterPets,
             }}
         >
             {children}

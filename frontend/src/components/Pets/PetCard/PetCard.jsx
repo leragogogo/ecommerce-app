@@ -8,9 +8,9 @@ const PetCard = ({ pet }) => {
   const loadImage = (imagePath) => {
     return require(`../../../assets/pets/${imagePath}`);
   };
-  
+
   return (
-    <div className="pet-card" onClick={() => navigate(`/pets/${pet.id}`)}>
+    <div className="pet-card" onClick={() => navigate(`/pets/${pet.id}`, { state: { pet } })}>
       <div className="image-container">
         <img src={loadImage(pet.imagePath)} alt={pet.name} className="pet-image" />
       </div>

@@ -6,21 +6,18 @@ import { usePets } from '../../providers/PetsProvider';
 import { useNavigate } from 'react-router-dom';
 
 const Pets = () => {
-    const { pets, loading, error, loadPets } = usePets();
+    const { loading, error, loadPets, filteredPets, filterPets } = usePets();
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
-        const debounceTimer = setTimeout(() => {
-            console.log('useEffect')
-            loadPets(searchQuery);
-        }, 300);
-
-        return () => clearTimeout(debounceTimer);
+        filterPets(searchQuery);
     }, [searchQuery]);
 
-    if (error) return <div>Error: {error}</div>;
-    if (loading) return <div>Loading...</div>;
-
+    if (error) return <div className="pet-list-page">Error: {error}</div>;
+    if (loading) return <div className="pet-list-page">Loading...</div >;
+    for (var p of filteredPets) {
+        console.log(p.imagePath)
+    }
     return (
         <div className="pet-list-page">
             <div className="controls-container">
@@ -33,7 +30,7 @@ const Pets = () => {
                 </button>
             </div>
             <div className="pet-grid">
-                {pets.map(pet => (
+                {filteredPets.map(pet => (
                     <PetCard key={pet.id} pet={pet} />
                 ))}
             </div>

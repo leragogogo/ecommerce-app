@@ -6,7 +6,7 @@ import { usePets } from '../../../providers/PetsProvider';
 
 const CartCard = ({ cartItem }) => {
     const { decrementQuantity, incrementQuantity, deleteFromCart } = useCart();
-    const { increaseStock, decreaseStock } = usePets();
+    const { updateStock } = usePets();
     const loadImage = (imagePath) => {
         return require(`../../../assets/pets/${imagePath}`);
     };
@@ -23,7 +23,7 @@ const CartCard = ({ cartItem }) => {
                             <button
                                 onClick={() => {
                                     if (cartItem.quantity > 0) {
-                                        increaseStock(cartItem.pet.id, 1);
+                                        updateStock(cartItem.pet.id, 1);
                                     }
                                     decrementQuantity(cartItem.pet.id);
                                 }}
@@ -36,7 +36,7 @@ const CartCard = ({ cartItem }) => {
                                 onClick={() => {
                                     incrementQuantity(cartItem.pet.id);
                                     if (cartItem.pet.stock > 0) {
-                                        decreaseStock(cartItem.pet.id, 1);
+                                        updateStock(cartItem.pet.id, -1);
                                     }
                                 }
                                 }
@@ -46,7 +46,7 @@ const CartCard = ({ cartItem }) => {
                             </button>
                         </div>
                         <img className="bin" src={bin} onClick={() => {
-                            increaseStock(cartItem.pet.id, cartItem.quantity);
+                            updateStock(cartItem.pet.id, cartItem.quantity);
                             deleteFromCart(cartItem.pet.id);
                         }
                         } />

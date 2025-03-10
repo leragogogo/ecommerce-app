@@ -1,34 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './PetDetails.css';
 import { useCart } from '../../../providers/CartProvider';
 import { usePets } from '../../../providers/PetsProvider';
 import AddToCartModal from '../../Cart/AddToCartModal/AddToCartModal';
 const PetDetail = () => {
-    const { id } = useParams();
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
-    const [pet, setPet] = useState(null);
-    const { decreaseStock, getPetById } = usePets();
+    const { updateStock } = usePets();
     const [showModal, setShowModal] = useState(false);
+    const location = useLocation();
+    const pet = location.state?.pet;
     const loadImage = (imagePath) => {
         return require(`../../../assets/pets/${imagePath}`);
     };
-    useEffect(() => {
-        const loadPet = async () => {
-            try {
-                const data = await getPetById(id);
-                setPet(data);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        loadPet();
-    }, [id, getPetById]);
 
     const handleAddToCart = () => {
         addToCart(pet, quantity);
-        decreaseStock(pet.id, quantity);
+        updateStock(pet.id, -quantity);
         setShowModal(true);
     };
 

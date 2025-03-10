@@ -15,4 +15,27 @@ const createPet = async (req, res) => {
     res.status(201).json(savedPet);
 }
 
-module.exports = { getAllPets, createPet };
+const updateStock = async (req, res) => {
+    const { quantity } = req.body;
+    const { id } = req.params;
+    try {
+        const pet = await Pet.findById(id);
+
+        if (!pet) {
+            return res.status(404).json({ message: "Pet not found" });
+        }
+
+        if (pet.stock + quantity < 0) {
+            return res.status(400).json({ message: "Not enough stock available" });
+        }
+
+        pet.stock += quantity;
+        await pet.save();
+
+        res.json({ message: "Stock updated successfully", pet });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+module.exports = { getAllPets, createPet, updateStock };
