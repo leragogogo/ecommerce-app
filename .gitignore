@@ -6,7 +6,7 @@ frontend/.pnp
 
 # Environment files
 backend/.env
-fronted/.env
+frontend/.env
 
 # Logs & Debug Files
 logs/

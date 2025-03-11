@@ -5,17 +5,4 @@ const getUserOrders = async (req, res) => {
     res.json(orders);
 }
 
-const createOrder = async (req, res) => {
-    const { orderItems, totalPrice } = req.body;
-    const order = new Order({
-        user: req.user._id,
-        orderItems,
-        totalPrice,
-        isPaid: false,
-    })
-
-    const savedOrder = await order.save();
-    res.status(201).json(savedOrder);
-}
-
-module.exports = { getUserOrders, createOrder };
+module.exports = { getUserOrders };

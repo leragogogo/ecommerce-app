@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Cart.css';
 import { useCart } from '../../providers/CartProvider';
+import { useAuth } from '../../providers/AuthProvider';
 import CartCard from './CartCard/CartCard';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import CheckoutModal from '../Checkout/CheckoutModal/CheckoutModal';
 const Cart = () => {
+    const { user } = useAuth()
     const { cartItems } = useCart();
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
     const calculateTotal = () => {
         var total = 0;
         for (var item of cartItems) {
@@ -31,12 +37,27 @@ const Cart = () => {
                     <h3 className='total'>
                         {`Total: €${calculateTotal()}`}
                     </h3>
-                    <button className='checkout'>
+                    <button className='checkout' onClick={
+                        () => {
+                            if (user) {
+                                navigate("/checkout", {
+                                    state: {
+                                        totalPrice: calculateTotal()
+                                    }
+                                });
+                            }
+                            else {
+                                setShowModal(true);
+                            }
+
+                        }}>
                         Checkout
                     </button>
                 </div>}
-
-        </div>
+            {showModal && (
+                <CheckoutModal onClose={() => setShowModal(false)} />
+            )}
+        </div >
     );
 };
 

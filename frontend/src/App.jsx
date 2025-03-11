@@ -12,6 +12,7 @@ import { AuthProvider } from './providers/AuthProvider';
 import Profile from './components/Profile/Profile';
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register/>} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/checkout" element={<Checkout />} />
                 </Routes>
               </main>
             </div>

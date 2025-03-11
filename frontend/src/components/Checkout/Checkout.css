@@ -1,0 +1,20 @@
+@import "../../vars.css";
+
+.checkout-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10%;
+}
+
+.checkout-container h2{
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 40px;
+}
+
+.checkout-container h3{
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 30px;
+}
