@@ -74,7 +74,8 @@ export const PetProvider = ({ children }) => {
                 pets[pets.length - 1].id + 1,
                 newPet.name, newPet.description,
                 newPet.price, categories[categoryIndex], newPet.stock, image);
-            await apiCreatePet(pet);
+            var respond = await apiCreatePet(pet);
+            pet.id = respond._id;
             var arr = pets;
             arr.push(pet);
             setPets(arr);
@@ -82,19 +83,6 @@ export const PetProvider = ({ children }) => {
             throw err;
         }
     };
-
-    /*const decreaseStock = (petId, quantity) => {
-        var newPets = [];
-        for (var i = 0; i < pets.length; i++) {
-            newPets.push(pets[i]);
-        }
-        for (var i = 0; i < newPets.length; i++) {
-            if (newPets[i].id == petId) {
-                newPets[i].stock -= quantity;
-            }
-        }
-        setPets(newPets);
-    }*/
 
     const updateStock = async (petId, quantity) => {
         await apiUpdateStock(petId, quantity);

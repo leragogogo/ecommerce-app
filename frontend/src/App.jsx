@@ -13,36 +13,41 @@ import Profile from './components/Profile/Profile';
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 import Checkout from './components/Checkout/Checkout';
+import Orders from './components/Orders/Orders';
+import { OrdersProvider } from './providers/OrdersProvider';
 
 function App() {
   return (
     <AuthProvider>
-      <PetProvider>
-        <CartProvider>
-          <Router>
-            <div className="App">
-              <header>
-                <nav>
-                  <Navbar />
-                </nav>
-              </header>
-              <main>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/pets" element={<Pets />} />
-                  <Route path="/pets/:id" element={<PetDetail />} />
-                  <Route path="/pets/petForm" element={<PetForm />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                </Routes>
-              </main>
-            </div>
-          </Router>
-        </CartProvider>
-      </PetProvider>
+      <OrdersProvider>
+        <PetProvider>
+          <CartProvider>
+            <Router>
+              <div className="App">
+                <header>
+                  <nav>
+                    <Navbar />
+                  </nav>
+                </header>
+                <main>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/pets" element={<Pets />} />
+                    <Route path="/pets/:id" element={<PetDetail />} />
+                    <Route path="/pets/petForm" element={<PetForm />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/orders" element={<Orders />} />
+                  </Routes>
+                </main>
+              </div>
+            </Router>
+          </CartProvider>
+        </PetProvider>
+      </OrdersProvider>
     </AuthProvider>
   );
 }

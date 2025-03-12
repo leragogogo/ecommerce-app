@@ -1,0 +1,74 @@
+.order-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.order-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-card h3 {
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 30px;
+}
+
+.order-card h4 {
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 20px;
+
+}
+
+
+.order-image-container {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+.order-image {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    align-self: center;
+    margin-right: 30px;
+}
+
+.quantity-badge {
+    position: absolute;
+    left: 150px;
+    top: 190px;
+    background-color: var(--color-button);
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.order-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .order-title {
+        flex-direction: column;
+    }
+}

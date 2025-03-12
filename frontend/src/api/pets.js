@@ -1,7 +1,6 @@
 import { Category } from '../models/Category';
 import { Pet } from '../models/Pet';
 
-// Mock data for development
 /*const mockCategories = [
     new Category(1, 'Air'),
     new Category(2, 'Earth'),
@@ -21,7 +20,7 @@ export const mockPets = [
 ];
 */
 export const createPet = async (newPet) => {
-    await fetch("http://localhost:5001/api/pets", {
+    const response = await fetch("http://localhost:5001/api/pets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -34,10 +33,11 @@ export const createPet = async (newPet) => {
         }),
 
     });
+    return await response.json();
 }
 
 export const fetchCategories = async () => {
-    return [];//mockCategories;
+    return [];
 }
 
 export const fetchPets = async (searchQuery) => {
@@ -45,10 +45,7 @@ export const fetchPets = async (searchQuery) => {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-    /*const data = */ return await response.json();
-    /*return data.filter(pet =>
-        pet.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );*/
+    return await response.json();
 };
 
 export const updateStock = async (petId, quantity) => {
@@ -62,6 +59,5 @@ export const updateStock = async (petId, quantity) => {
 }
 
 export const fetchPetDetails = async (id) => {
-    // Replace with actual API call later
-    return [];//mockPets.find(pet => pet.id === Number(id));
+    return [];
 };

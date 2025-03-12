@@ -1,0 +1,15 @@
+@import "../../vars.css";
+
+.orders-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10%;
+}
+
+.orders-page h2 {
+    color: var(--color-text);
+    font-family: var(--font-roboto);
+    font-size: 50px;
+
+}

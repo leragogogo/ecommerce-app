@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../providers/AuthProvider';
 import { Link } from "react-router-dom";
@@ -34,7 +33,7 @@ const Profile = () => {
                     <h1 className="profile-title">
                         Profile
                     </h1>
-                    <button className="order-button">
+                    <button className="order-button" onClick={() => navigate('/orders')}>
                         Orders history
                     </button>
                 </div>
