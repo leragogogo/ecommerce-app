@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { fetchPets, fetchPetDetails, createPet as apiCreatePet, updateStock as apiUpdateStock } from '../api/pets';
+import { fetchPets, createPet as apiCreatePet } from '../api/pets';
 import { Pet } from '../models/Pet';
 import { Category } from '../models/Category';
 const PetContext = createContext();
@@ -25,7 +25,7 @@ export const PetProvider = ({ children }) => {
                 data.map(
                     (pet) => new Pet(
                         pet._id, pet.name, pet.description,
-                        pet.price, pet.category, pet.stock, pet.image
+                        pet.price, pet.category, pet.image
                     )
                 )
             );
@@ -33,7 +33,7 @@ export const PetProvider = ({ children }) => {
                 data.map(
                     (pet) => new Pet(
                         pet._id, pet.name, pet.description,
-                        pet.price, pet.category, pet.stock, pet.image
+                        pet.price, pet.category, pet.image
                     )
                 )
             );
@@ -50,61 +50,47 @@ export const PetProvider = ({ children }) => {
         )
         );
     }
+
     const addPet = async (newPet) => {
         try {
-            var categoryIndex = 0;
-            var image = 'air.jpg'
+            let categoryIndex = 0;
+            let image = 'air.jpg';
+
             switch (newPet.category) {
                 case 'Water':
                     categoryIndex = 1;
-                    image = 'water.jpg'
+                    image = 'water.jpg';
                     break;
                 case 'Fire':
                     categoryIndex = 2;
-                    image = 'fire.jpg'
+                    image = 'fire.jpg';
                     break;
                 case 'Earth':
                     categoryIndex = 3;
-                    image = 'earth.jpg'
+                    image = 'earth.jpg';
                     break;
                 default:
                     break;
             }
-            var pet = new Pet(
-                pets[pets.length - 1].id + 1,
-                newPet.name, newPet.description,
-                newPet.price, categories[categoryIndex], newPet.stock, image);
-            var respond = await apiCreatePet(pet);
-            pet.id = respond._id;
-            var arr = pets;
-            arr.push(pet);
-            setPets(arr);
+            newPet.category = categories[categoryIndex];
+            newPet.imagePath = image;
+            let response = await apiCreatePet(newPet);
+            const petId = response?._id;
+            let pet = new Pet(
+                petId,
+                newPet.name,
+                newPet.description,
+                newPet.price,
+                categories[categoryIndex],
+                image
+            );
+            setPets(prevPets => [...prevPets, pet]);
+
         } catch (err) {
             throw err;
         }
     };
 
-    const updateStock = async (petId, quantity) => {
-        await apiUpdateStock(petId, quantity);
-        var newPets = [];
-        for (var i = 0; i < pets.length; i++) {
-            newPets.push(pets[i]);
-        }
-        for (var i = 0; i < newPets.length; i++) {
-            if (newPets[i].id == petId) {
-                newPets[i].stock += quantity;
-            }
-        }
-        setPets(newPets);
-    }
-
-    const getPetById = async (id) => {
-        try {
-            return await fetchPetDetails(id);
-        } catch (err) {
-            throw err;
-        }
-    };
 
     useEffect(() => {
         loadPets();
@@ -120,8 +106,6 @@ export const PetProvider = ({ children }) => {
                 filteredPets,
                 loadPets,
                 addPet,
-                getPetById,
-                updateStock,
                 filterPets,
             }}
         >

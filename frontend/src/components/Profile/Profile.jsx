@@ -6,8 +6,6 @@ import './Profile.css'
 const Profile = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
-
-    console.log(user)
     return (
         user == null ?
             <div className="profile-empty-container">

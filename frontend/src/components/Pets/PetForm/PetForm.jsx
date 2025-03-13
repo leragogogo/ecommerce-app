@@ -10,7 +10,6 @@ const PetForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         category: null,
-        stock: 1,
         price: 1000,
         description: ''
     });
@@ -73,18 +72,6 @@ const PetForm = () => {
                         </option>
                     ))}
                 </select>
-
-                <label>
-                    Stock:
-                    <input
-                        type="number"
-                        value={formData.stock}
-                        onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                        required
-                        min="1"
-                    />
-
-                </label>
 
                 <label>
                     Price:

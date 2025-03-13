@@ -49,18 +49,17 @@ export const CartProvider = ({ children }) => {
 
   const incrementQuantity = (cartId) => {
     var item = cartItems.find((item) => item.pet.id == cartId);
-    if (item.pet.stock != 0) {
-      var newCartItems = [];
-      for (var item of cartItems) {
-        newCartItems.push(item);
-      }
-      for (var i = 0; i < newCartItems.length; i++) {
-        if (newCartItems[i].pet.id == cartId) {
-          newCartItems[i].quantity = Math.min(newCartItems[i].pet.stock + newCartItems[i].quantity, newCartItems[i].quantity + 1);
-        }
-      }
-      setCartItems(newCartItems);
+    var newCartItems = [];
+    for (var item of cartItems) {
+      newCartItems.push(item);
     }
+    for (var i = 0; i < newCartItems.length; i++) {
+      if (newCartItems[i].pet.id == cartId) {
+        newCartItems[i].quantity = newCartItems[i].quantity + 1;
+      }
+    }
+    setCartItems(newCartItems);
+
   }
 
   return (
@@ -68,7 +67,7 @@ export const CartProvider = ({ children }) => {
       {
         cartItems, addToCart,
         deleteFromCart, decrementQuantity,
-        incrementQuantity,
+        incrementQuantity
       }
     }>
       {children}

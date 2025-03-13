@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './PetDetails.css';
 import { useCart } from '../../../providers/CartProvider';
-import { usePets } from '../../../providers/PetsProvider';
 import AddToCartModal from '../../Cart/AddToCartModal/AddToCartModal';
 const PetDetail = () => {
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
-    const { updateStock } = usePets();
     const [showModal, setShowModal] = useState(false);
     const location = useLocation();
     const pet = location.state?.pet;
@@ -17,7 +15,6 @@ const PetDetail = () => {
 
     const handleAddToCart = () => {
         addToCart(pet, quantity);
-        updateStock(pet.id, -quantity);
         setShowModal(true);
     };
 
@@ -30,10 +27,7 @@ const PetDetail = () => {
                 <h1 className='pet-name'>{pet.name}</h1>
                 <p className='pet-details-text'>{pet.description}</p>
                 <p className='pet-price'>{pet.price} Euro</p>
-                <p className={pet.stock === 0 ? 'out-of-stock' : 'in-stock'}>
-                    {pet.stock == 0 ? 'Not in stock!' : 'In stock!'}
-                </p>
-                {pet.stock > 0 && (
+                {(
                     <>
                         <div className="quantity-controls">
                             <button
@@ -44,7 +38,7 @@ const PetDetail = () => {
                             </button>
                             <span>{quantity}</span>
                             <button
-                                onClick={() => setQuantity(Math.min(pet.stock, quantity + 1))}
+                                onClick={() => setQuantity(quantity + 1)}
                                 aria-label="Increase quantity"
                             >
                                 +

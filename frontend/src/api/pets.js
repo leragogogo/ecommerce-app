@@ -1,6 +1,3 @@
-import { Category } from '../models/Category';
-import { Pet } from '../models/Pet';
-
 /*const mockCategories = [
     new Category(1, 'Air'),
     new Category(2, 'Earth'),
@@ -20,6 +17,13 @@ export const mockPets = [
 ];
 */
 export const createPet = async (newPet) => {
+    console.log({
+        "name": newPet.name,
+        "description": newPet.description,
+        "price": newPet.price,
+        "category": newPet.category.name,
+        "image": newPet.imagePath,
+    })
     const response = await fetch("http://localhost:5001/api/pets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -28,16 +32,11 @@ export const createPet = async (newPet) => {
             "description": newPet.description,
             "price": newPet.price,
             "category": newPet.category.name,
-            "stock": newPet.stock,
             "image": newPet.imagePath,
         }),
 
     });
     return await response.json();
-}
-
-export const fetchCategories = async () => {
-    return [];
 }
 
 export const fetchPets = async (searchQuery) => {
@@ -46,18 +45,4 @@ export const fetchPets = async (searchQuery) => {
         headers: { "Content-Type": "application/json" },
     });
     return await response.json();
-};
-
-export const updateStock = async (petId, quantity) => {
-    await fetch(`http://localhost:5001/api/pets/${petId}/stock`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            "quantity": quantity
-        }),
-    });
-}
-
-export const fetchPetDetails = async (id) => {
-    return [];
 };
