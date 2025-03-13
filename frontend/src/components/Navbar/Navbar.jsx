@@ -5,6 +5,7 @@ import profile from "../../assets/nav/user.png";
 import cart from "../../assets/nav/online-shopping.png"
 import { useNavigate } from 'react-router-dom';
 
+// header
 export const Navbar = () => {
 
     const navigate = useNavigate();

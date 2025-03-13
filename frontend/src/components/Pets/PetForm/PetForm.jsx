@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './PetForm.css';
 import { usePets } from '../../../providers/PetsProvider';
 
+// form to create new pet
 const PetForm = () => {
     const { categories } = usePets();
     const { addPet } = usePets();

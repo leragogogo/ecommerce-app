@@ -1,39 +1,13 @@
 import { PayPalScriptProvider, PayPalButtons, FUNDING } from "@paypal/react-paypal-js";
 import { useAuth } from "../../../providers/AuthProvider";
+import { makePayment } from "../../../api/paypal";
 
 const PayPalButton = ({ totalPrice, cart }) => {
     const { user } = useAuth();
 
     const handleApprove = async (data, actions) => {
-        try {
-            const order = await actions.order.capture();
-            const orderItems = cart.map((item) => ({
-                product: item.pet.id,
-                quantity: item.quantity,
-            }));
-
-            const response = await fetch("http://localhost:5001/api/paypal/success", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${user.token}`,
-                },
-                body: JSON.stringify({
-                    orderID: data.orderID,
-                    orderItems,
-                    totalPrice,
-                }),
-            });
-
-            if (response.ok) {
-                alert("✅ Payment successful! Order has been placed.");
-                window.location.href = `/success?orderID=${data.orderID}`;
-            } else {
-                alert("❌ Order creation failed!");
-            }
-        } catch (error) {
-            alert("❌ Payment failed, please try again.");
-        }
+        const message = await makePayment(data, actions, user, cart, totalPrice);
+        alert(message);
     };
 
     return (

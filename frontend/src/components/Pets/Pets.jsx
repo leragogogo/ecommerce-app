@@ -5,6 +5,7 @@ import './Pets.css';
 import { usePets } from '../../providers/PetsProvider';
 import { useNavigate } from 'react-router-dom';
 
+// component with all available pets
 const Pets = () => {
     const { loading, error, loadPets, filteredPets, filterPets } = usePets();
     const [searchQuery, setSearchQuery] = useState('');

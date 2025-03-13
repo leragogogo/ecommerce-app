@@ -12,6 +12,8 @@ export const PetProvider = ({ children }) => {
         ]
     );
     const [pets, setPets] = useState([]);
+
+    // pets based on search query
     const [filteredPets, setFilteredPets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -56,6 +58,7 @@ export const PetProvider = ({ children }) => {
             let categoryIndex = 0;
             let image = 'air.jpg';
 
+            // select picture based on chosen category
             switch (newPet.category) {
                 case 'Water':
                     categoryIndex = 1;

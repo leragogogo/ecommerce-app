@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import './PetDetails.css';
 import { useCart } from '../../../providers/CartProvider';
 import AddToCartModal from '../../Cart/AddToCartModal/AddToCartModal';
+
+// component that appears when user clicks on a pet
 const PetDetail = () => {
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);

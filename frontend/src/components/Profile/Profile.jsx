@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './Profile.css'
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
     return (
         user == null ?
@@ -33,6 +33,9 @@ const Profile = () => {
                     </h1>
                     <button className="order-button" onClick={() => navigate('/orders')}>
                         Orders history
+                    </button>
+                    <button className="order-button" onClick={() => logout()}>
+                        Logout
                     </button>
                 </div>
 

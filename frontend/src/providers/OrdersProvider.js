@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { fetchOrders } from "../api/orders";
 import { Order, OrderItem } from "../models/Order";
+import { useAuth } from "../providers/AuthProvider";
 
 const OrdersContext = createContext();
 
@@ -8,8 +9,8 @@ export const OrdersProvider = ({ children }) => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const loadOrders = async (user) => {
+    const { user } = useAuth();
+    const loadOrders = async () => {
         try {
             setLoading(true);
             const data = await fetchOrders(user);

@@ -46,4 +46,15 @@
         z-index: 3;
     }
 
+    .menuItems {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+        align-items: center;
+    }
+
+    .title {
+        font-size: 10px;
+    }
+
 }

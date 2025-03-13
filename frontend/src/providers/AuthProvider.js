@@ -3,7 +3,17 @@ import { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        // load user data from localStorage on initial load
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    const saveUserToLocalStorage = (userData) => {
+        localStorage.setItem("user", JSON.stringify(userData));
+        setUser(userData);
+    };
+
 
     const login = async (email, password) => {
         try {
@@ -16,7 +26,14 @@ export const AuthProvider = ({ children }) => {
             if (!response.ok) {
                 return data.message || "Login failed. Please check your credentials.";
             }
-            setUser({ firstName: data.firstName, lastName: data.lastName, email: data.email, token: data.token })
+            const userData = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                token: data.token
+            };
+
+            saveUserToLocalStorage(userData);
             return null;
         }
         catch (error) {
@@ -36,7 +53,14 @@ export const AuthProvider = ({ children }) => {
             if (!response.ok) {
                 return data.message || "Account with this credentials already exists.";
             }
-            setUser({ firstName: data.firstName, lastName: data.lastName, email: data.email, token: data.token })
+            const userData = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                token: data.token
+            };
+
+            saveUserToLocalStorage(userData);
             return null;
         }
         catch (error) {
@@ -44,10 +68,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = () => {
+        localStorage.removeItem("user");
+        setUser(null);
+    };
+
+
     return (
         <AuthContext.Provider value={
             {
-                user, login, register
+                user, login, register, logout
             }
         }>
             {children}

@@ -1,4 +1,5 @@
 export const fetchOrders = async (user) => {
+    console.log(user);
     const response = await fetch("http://localhost:5001/api/orders", {
         method: "GET",
         headers: {

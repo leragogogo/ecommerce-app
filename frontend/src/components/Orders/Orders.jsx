@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useOrders } from "../../providers/OrdersProvider";
-import { useAuth } from '../../providers/AuthProvider';
 import OrderCard from "./OrderCard/OrderCard";
 import './Orders.css';
 import { Link } from "react-router-dom";
 
 const Orders = () => {
-    const { user } = useAuth();
     const { orders, loadOrders } = useOrders();
     useEffect(() => {
-        loadOrders(user);
+        loadOrders();
         console.log(orders);
     }, []);
     return (
