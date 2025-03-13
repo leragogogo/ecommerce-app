@@ -9,9 +9,9 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/en)
-* A **MongoDB Atlas account** and connection string
-* A **PayPal Developer account** with sandbox credentials
+* **[Node.js](https://nodejs.org/en)**
+* **[MongoDB Atlas account](https://www.mongodb.com/atlas)** and connection string
+* **[PayPal Sandbox Developer account](https://developer.paypal.com/tools/sandbox/)** with sandbox credentials
 
 ## Setup
 1. Clone repository
@@ -28,15 +28,24 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
     npm install
     ```
 2. **Configure Environment Variables**
-   
-   In the backend folder, create a .env file and add the required environment variables:
-   ```console
-   PORT=5000
-   MONGO_URL=your_mongodb_atlas_connection_string
-   JWT_SECRET=your_jwt_secret
-   PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
-   PAYPAL_SECRET=your_paypal_sandbox_secret
-   ```
+
+   1. Genereate JWT secret
+      You can generate JWT secret using Node.js.
+      Run this in your terminal:
+      ```console
+      node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+      ```
+
+   2. In the backend folder, create a .env file and add the required environment variables:
+      ```console
+      PORT=5000
+      MONGO_URL=your_mongodb_atlas_connection_string
+      JWT_SECRET=your_jwt_secret
+      PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
+      PAYPAL_SECRET=your_paypal_sandbox_secret
+      ```
+
+
 
 4. **Start the Backend Server**
    
