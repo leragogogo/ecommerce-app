@@ -9,8 +9,16 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 
 ## Prerequisites
 
+* [Node.js](https://nodejs.org/en)
 * A **MongoDB Atlas account** and connection string
 * A **PayPal Developer account** with sandbox credentials
+
+## Setup
+1. Clone repository
+   ```console
+   git clone https://github.com/your-repo/e-commerce-app.git
+   cd e-commerce-app
+   ```
 
 ## Backend Setup 
 
