@@ -15,7 +15,7 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 ## Setup
 1. Clone repository
    ```console
-   git clone https://github.com/your-repo/e-commerce-app.git
+   git clone https://github.com/leragogogo/e-commerce-app.git
    cd e-commerce-app
    ```
 
