@@ -10,7 +10,6 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 ## Prerequisites
 
 * **[Node.js](https://nodejs.org/en)**
-* **[MongoDB Atlas account](https://www.mongodb.com/atlas)** and connection string
 * **[PayPal Sandbox Developer account](https://developer.paypal.com/tools/sandbox/)** with sandbox credentials
 
 ## Setup
@@ -29,25 +28,17 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
     ```
 2. **Configure Environment Variables**
 
-   1. Genereate JWT secret
-      You can generate JWT secret using Node.js.
-      Run this in your terminal:
+    In the backend folder, create a .env file and add the required environment variables:
       ```console
-      node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
-      ```
-
-   2. In the backend folder, create a .env file and add the required environment variables:
-      ```console
-      PORT=5000
-      MONGO_URL=your_mongodb_atlas_connection_string
-      JWT_SECRET=your_jwt_secret
+      PORT=5001
+      MONGO_URI=mongodb+srv://admin:Hogwarts08@ecommerce.lqzfw.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce
+      JWT_SECRET=1f34a32ede227250490ad501a74590775f2b2cb9ca4ca7b73c98f00f7a3e0604
       PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
       PAYPAL_SECRET=your_paypal_sandbox_secret
       ```
+   Since it is an educational project, it doesn't contain any vulnerable information in the database, which is why I share credentials and JWT secret.
 
-
-
-4. **Start the Backend Server**
+3. **Start the Backend Server**
    
    Run in the backend folder:
    ```console
@@ -56,7 +47,7 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 
    If succesfull you'll see:
    ```console
-   Server running on port 5000...
+   Server running on port 5001...
    Connected to MongoDB...
    ```
 ## Frontend Setup
@@ -71,8 +62,12 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
    ```console
    REACT_APP_PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
    ```
+   In the src/api/config.js file put the backend url.
+    ```console
+    export const localhost = 'http://localhost:5001';
+    ```
 
-4. **Start the Frontend Server**
+3. **Start the Frontend Server**
    
    Run in the frontend folder:
    ```console
