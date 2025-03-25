@@ -1,8 +1,8 @@
 // api endpoints connected to orders
-
+import { localhost } from './config';
 export const fetchOrders = async (user) => {
     console.log(user);
-    const response = await fetch(`${process.env.REACT_LOCAL_HOST}/api/orders`, {
+    const response = await fetch(`${localhost}/api/orders`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

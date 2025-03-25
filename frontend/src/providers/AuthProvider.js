@@ -18,14 +18,10 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            /*const response = await fetch("http://localhost:5001/api/users/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });*/
-            const data = await apiLogin(email, password).json();
-            if (!/*response*/data.ok) {
-                return data.message || "Login failed. Please check your credentials.";
+            const data = await apiLogin(email, password);
+
+            if (!data.token) {
+                return data.message;
             }
             const userData = {
                 firstName: data.firstName,
@@ -44,15 +40,9 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (firstName, lastName, email, password) => {
         try {
-            /*const response = await fetch("http://localhost:5001/api/users/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ firstName, lastName, email, password }),
-            });*/
-
-            const data = await apiRegister(firstName, lastName, email, password).json();
-            if (!/*response*/data.ok) {
-                return data.message || "Account with this credentials already exists.";
+            const data = await apiRegister(firstName, lastName, email, password);
+            if (!data.token) {
+                return data.message;
             }
             const userData = {
                 firstName: data.firstName,
