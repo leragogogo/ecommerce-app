@@ -1,0 +1,17 @@
+.error{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 10%;
+  }
+  
+  .error-text{
+    color: var(--color-text);
+    font-size: 30px;
+  }
+  
+  .error-img{
+    height: 200px;
+    width: 200px;
+  }

@@ -18,10 +18,10 @@ export const PetProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const loadPets = async (searchQuery = '') => {
+    const loadPets = async () => {
         try {
             setLoading(true);
-            const data = await fetchPets(searchQuery);
+            const data = await fetchPets();
 
             setPets(
                 data.map(

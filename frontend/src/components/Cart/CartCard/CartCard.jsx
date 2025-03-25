@@ -3,6 +3,7 @@ import './CartCard.css';
 import { useCart } from '../../../providers/CartProvider';
 import bin from '../../../assets/cart/bin.png'
 
+// component represents a cart item
 const CartCard = ({ cartItem }) => {
     const { decrementQuantity, incrementQuantity, deleteFromCart } = useCart();
     const loadImage = (imagePath) => {

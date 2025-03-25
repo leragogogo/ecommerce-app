@@ -3,6 +3,7 @@ import "./Home.css";
 import unicorn from '../../assets/home/home-logo.png';
 import { Link } from "react-router-dom";
 
+// landing page
 export const Home = () => {
   return <section className="container">
     <div className="content">
@@ -21,6 +22,4 @@ export const Home = () => {
     </div>
     <img src={unicorn} className="unicornImg" />
   </section>
-
-
 }

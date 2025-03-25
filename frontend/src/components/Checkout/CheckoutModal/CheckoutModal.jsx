@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CheckoutModal.css';
 
+// modal is shown when user wants to proceed with checkout but they are unauthorized
 const CheckoutModal = ({ onClose }) => {
     const navigate = useNavigate();
 

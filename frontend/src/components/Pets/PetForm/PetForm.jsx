@@ -27,10 +27,12 @@ const PetForm = () => {
         }
     };
 
+    // change price with input
     const handlePriceChange = (e) => {
         setFormData({ ...formData, price: e.target.value })
     };
 
+    // increament price with plus button
     const incrementPrice = () => {
         setFormData(prev => ({
             ...prev,
@@ -38,6 +40,7 @@ const PetForm = () => {
         }));
     };
 
+    // decrement price with minus button
     const decrementPrice = () => {
         setFormData(prev => ({
             ...prev,

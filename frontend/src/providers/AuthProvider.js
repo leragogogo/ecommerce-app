@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { login as apiLogin, register as apiRegister } from '../api/auth';
 
 const AuthContext = createContext();
 
@@ -17,13 +18,13 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch("http://localhost:5001/api/users/login", {
+            /*const response = await fetch("http://localhost:5001/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
-            });
-            const data = await response.json();
-            if (!response.ok) {
+            });*/
+            const data = await apiLogin(email, password).json();
+            if (!/*response*/data.ok) {
                 return data.message || "Login failed. Please check your credentials.";
             }
             const userData = {
@@ -43,14 +44,14 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (firstName, lastName, email, password) => {
         try {
-            const response = await fetch("http://localhost:5001/api/users/register", {
+            /*const response = await fetch("http://localhost:5001/api/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName, lastName, email, password }),
-            });
+            });*/
 
-            const data = await response.json();
-            if (!response.ok) {
+            const data = await apiRegister(firstName, lastName, email, password).json();
+            if (!/*response*/data.ok) {
                 return data.message || "Account with this credentials already exists.";
             }
             const userData = {

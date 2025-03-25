@@ -1,6 +1,7 @@
 import React from 'react';
 import './OrderCard.css';
 
+// order item
 const OrderCard = ({ order }) => {
     const loadImage = (imagePath) => {
         return require(`../../../assets/pets/${imagePath}`);

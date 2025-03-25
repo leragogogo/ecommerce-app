@@ -3,6 +3,7 @@ import PayPalButton from "./PayPalButton/PaypalButton";
 import { useLocation } from 'react-router-dom';
 import './Checkout.css';
 
+// component with final information about the order and PayPal button to simulate a purchase
 const Checkout = () => {
     const totalPrice = useLocation().state?.totalPrice;
     const { cartItems } = useCart();

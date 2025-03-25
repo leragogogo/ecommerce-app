@@ -1,3 +1,5 @@
+// api endpoints connected to PayPal
+
 export const makePayment = async (data, actions, user, cart, totalPrice) => {
     try {
         await actions.order.capture();
@@ -6,7 +8,7 @@ export const makePayment = async (data, actions, user, cart, totalPrice) => {
             quantity: item.quantity,
         }));
 
-        const response = await fetch("http://localhost:5001/api/paypal/success", {
+        const response = await fetch(`${process.env.REACT_LOCAL_HOST}/api/paypal/success`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

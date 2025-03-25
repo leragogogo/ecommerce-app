@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddToCartModal.css';
 
+// modal is shown to inform user that a pet was added to cart
 const AddToCartModal = ({ onClose }) => {
     const navigate = useNavigate();
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PetCard.css';
 
+// pet item with main details
 const PetCard = ({ pet }) => {
   const navigate = useNavigate();
 

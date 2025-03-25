@@ -6,6 +6,8 @@ import CartCard from './CartCard/CartCard';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import CheckoutModal from '../Checkout/CheckoutModal/CheckoutModal';
+
+// component with pets added to cart/backet
 const Cart = () => {
     const { user } = useAuth()
     const { cartItems } = useCart();

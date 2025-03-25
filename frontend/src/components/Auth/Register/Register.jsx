@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../../providers/AuthProvider';
 import './Register.css'
 
+// form for register
 const Register = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");

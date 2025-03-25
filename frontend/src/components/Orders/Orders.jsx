@@ -3,13 +3,24 @@ import { useOrders } from "../../providers/OrdersProvider";
 import OrderCard from "./OrderCard/OrderCard";
 import './Orders.css';
 import { Link } from "react-router-dom";
+import { Error } from '../Error/Error';
+import { Loading } from '../Loading/Loading';
 
+// component with orders for logged user
 const Orders = () => {
-    const { orders, loadOrders } = useOrders();
+    const { orders, loadOrders, loading, error } = useOrders();
     useEffect(() => {
         loadOrders();
         console.log(orders);
     }, []);
+
+    if (error) return (
+        <Error />
+    );
+    if (loading) return (
+        <Loading />
+    );
+
     return (
         <div className="orders-page">
             {orders.length == 0 ?

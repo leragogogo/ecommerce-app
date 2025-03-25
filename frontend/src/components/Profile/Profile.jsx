@@ -3,6 +3,7 @@ import { useAuth } from '../../providers/AuthProvider';
 import { Link } from "react-router-dom";
 import './Profile.css'
 
+// user information
 const Profile = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
