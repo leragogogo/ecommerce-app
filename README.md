@@ -16,7 +16,7 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 1. Clone repository
    ```console
    git clone https://github.com/leragogogo/e-commerce-app.git
-   cd e-commerce-app
+   cd ecommerce-app
    ```
 
 ## Backend Setup 
@@ -33,8 +33,8 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
       PORT=5001
       MONGO_URI=mongodb+srv://admin:Hogwarts08@ecommerce.lqzfw.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce
       JWT_SECRET=1f34a32ede227250490ad501a74590775f2b2cb9ca4ca7b73c98f00f7a3e0604
-      PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
-      PAYPAL_SECRET=your_paypal_sandbox_secret
+      PAYPAL_CLIENT_ID=AdiiRxH0pfhMyXEIvbSvPEvh4aGZWex3lqGq-avXen-lnCNN6jAt3-AapaOxjvuAFHFh0JFPdX4gwSkp
+      PAYPAL_SECRET=EDY3CELm7j6SvUuN2xiv5i1uvj8s3LKUsN9LPchYJMumDX9FuZBWXTbEAaYsTXmAZbJC9pyHu2Ggr06g
       ```
    Since it is an educational project, it doesn't contain any vulnerable information in the database, which is why I share credentials and JWT secret.
 
@@ -60,7 +60,7 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
    
    In the frontend folder, create a .env file and add:
    ```console
-   REACT_APP_PAYPAL_CLIENT_ID=your_paypal_sandbox_client_id
+   REACT_APP_PAYPAL_CLIENT_ID=AdiiRxH0pfhMyXEIvbSvPEvh4aGZWex3lqGq-avXen-lnCNN6jAt3-AapaOxjvuAFHFh0JFPdX4gwSkp
    ```
    In the src/api/config.js file put the backend url.
     ```console
@@ -76,3 +76,4 @@ Here you can find instructions on how to set up and run the E-Commerce App, whic
 
    The application should be available at: http://localhost:3000/
    
+
